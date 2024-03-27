@@ -1,20 +1,18 @@
-import { getData } from './getData.js'
+import { getData, createCard } from './utils.js'
 
-export function createCard(data) {
-	const card = document.createElement('div')
-	card.style.backgroundImage = `url(${data.backdrop_path})`
-	card.className = 'card'
+export async function search(query) {
+	const result = await getData(`https://movies-api14.p.rapidapi.com/search?query=${query}`)
+	document.querySelector('main').innerHTML = ''
 
-	const cardTitle = document.createElement('span')
-	cardTitle.textContent = data.title
-	cardTitle.className = 'card-title'
+	result.contents.forEach(movie => {
+		document.querySelector('main').appendChild(createCard(movie))
+	})	
+}
 
-	const cardDate = document.createElement('time')
-	cardDate.textContent = data.release_date
-	cardDate.className = 'card-date'
-
-	card.append(cardTitle, cardDate)
-	return card
+document.querySelector('#search').onsubmit = event => {
+	event.preventDefault()
+	const formData = new FormData(event.target)
+	search(formData.get('search'))
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
@@ -23,7 +21,3 @@ window.addEventListener('DOMContentLoaded', async () => {
 		document.querySelector('main').appendChild(createCard(movie))
 	})
 })
-
-// export function search(query) {
-	
-// }
