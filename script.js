@@ -5,11 +5,40 @@ export async function search(query) {
 	document.querySelector('main').innerHTML = ''
 	document.querySelector('main').className = 'search-content'
 
-	result.contents.forEach(movie => {
-		const card = createCard(movie)
-		card.onclick = () => renderDetails(movie)
-		document.querySelector('main').appendChild(card)
-	})	
+  let currentPage=1
+  let pageSize=6
+  showMovies()
+
+  function renderPagination(){
+    for(let i=0; i<(result.contents.length/pageSize);i++){
+      let button=document.createElement("button")
+      button.textContent=i+1
+      button.addEventListener("click",handelPagination)
+      button.classList.add("page-btn")
+        if(i==currentPage){
+            button.classList.add("bg-indigo-600")
+        }
+      document.querySelector("main").appendChild(button)
+    }
+  }
+
+  function handelPagination(e){
+    currentPage=+e.target.textContent
+    showMovies()
+  }
+
+  function showMovies(){
+    document.querySelector("main").innerHTML=""
+    let starIndex=(currentPage-1)*pageSize
+    let endIndex=starIndex+pageSize
+    let toShow=result.contents.slice(starIndex,endIndex)
+    toShow.forEach(movie => {
+      const card = createCard(movie)
+      card.onclick = () => renderDetails(movie)
+      document.querySelector('main').appendChild(card)
+    })
+    renderPagination()
+  }
 }
 
 export function renderDetails(data) {
