@@ -15,8 +15,8 @@ export async function search(query) {
       button.textContent=i+1
       button.addEventListener("click",handelPagination)
       button.classList.add("page-btn")
-        if(i==currentPage){
-            button.classList.add("bg-indigo-600")
+        if(i+1==currentPage){
+            button.classList.add("bg-violet-600")
         }
       document.querySelector("main").appendChild(button)
     }
