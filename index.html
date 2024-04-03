@@ -33,11 +33,7 @@
 			}
 
 			.search-content {
-				@apply grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 m-auto;
-			}
-
-			#details {
-				@apply p-4 bg-transparent;
+				@apply grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 m-auto;
 			}
 
 			#details::backdrop {
@@ -48,8 +44,8 @@
 				@apply max-w-2xl rounded-lg text-white bg-zinc-800 overflow-hidden;
 			}
 
-			.details-video {
-				@apply w-full aspect-video;
+			.details-media {
+				@apply w-full aspect-video object-cover;
 			}
 
 			.details-content {
@@ -71,15 +67,39 @@
 			.details-genres span {
 				@apply text-sm px-4 py-2 rounded-md text-violet-900 bg-violet-400;
 			}
+
+			.movie-list {
+				@apply flex flex-col gap-4 my-8;
+			}
+
+			.movies-wrapper {
+				@apply max-w-full overflow-x-auto;
+			}
+
+			.movies {
+				@apply w-max flex gap-4;
+			}
+
+			.movies .card {
+				@apply w-full max-w-32 overflow-hidden;
+			}
+
+			.movies .card-title {
+				@apply truncate;
+			}
+
+			.buttons {
+				@apply max-w-4xl px-6 pb-4 m-auto;
+			}
 		}
 
 		main {
-			max-width: 80vw;
+			@apply max-w-4xl px-4 pb-4 m-auto;
 		}
 	</style>
 </head>
 <body class="text-white bg-zinc-900">
-	<dialog id="details">
+	<dialog class="p-4 bg-transparent" id="details">
 		<form class="relative" method="dialog">
 			<button class="material-symbols-outlined absolute right-0 translate-x-1/2 -translate-y-1/2 p-1 text-white rounded-full bg-violet-600">
 				close
@@ -89,7 +109,7 @@
 	</dialog>
 
 	<header class="flex flex-col gap-4 p-8">
-		<h1 class="text-center text-2xl">
+		<h1 class="text-center text-3xl font-bold">
 			<a href="">Movie search</a>
 		</h1>
 		<nav>
@@ -99,11 +119,6 @@
 		</nav>
 	</header>
 
-	<main>
-		<section>
-			<h2></h2>
-			<div></div>
-		</section>
-	</main>
+	<main></main>
 </body>
 </html>
