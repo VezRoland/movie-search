@@ -17,6 +17,9 @@ export function createCard(data) {
 	card.style.backgroundImage = `url(${data.backdrop_path})`
 	card.className = 'card'
 
+	const cardContent = document.createElement('div')
+	cardContent.className = 'card-content'
+
 	const cardTitle = document.createElement('span')
 	cardTitle.textContent = data.title
 	cardTitle.className = 'card-title'
@@ -25,7 +28,8 @@ export function createCard(data) {
 	cardDate.textContent = data.release_date
 	cardDate.className = 'card-date'
 
-	card.append(cardTitle, cardDate)
+	cardContent.append(cardTitle, cardDate)
+	card.appendChild(cardContent)
 	return card
 }
 
