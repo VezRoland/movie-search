@@ -1,4 +1,5 @@
 import {apiKey} from './apiKey.js'
+import { renderDetails } from './script.js'
 
 export const getData=async(url)=>{
     try {
@@ -28,6 +29,8 @@ export function createCard(data) {
 	cardDate.textContent = data.release_date
 	cardDate.className = 'card-date'
 
+	card.onclick = () => renderDetails(data)
+
 	cardContent.append(cardTitle, cardDate)
 	card.appendChild(cardContent)
 	return card
@@ -36,18 +39,23 @@ export function createCard(data) {
 const url="https://movies-api14.p.rapidapi.com/home"
 
 export const renderSections=async(data)=>{
-	const section=document.createElement("section")
-    data.then(elements => elements.forEach(element => {
+	data.then(elements => elements.forEach(element => {
+		const section=document.createElement("section")
+		section.className="movie-list"
+		const moviesWrapper = document.createElement("div")
+		moviesWrapper.className = "movies-wrapper"
 		const div=document.createElement("div")
+		div.className="movies"
 		const title=document.createElement("h1")
+		title.className = 'text-xl font-semibold'
 		title.innerHTML=element.title
-		div.appendChild(title)
 		element.movies.forEach(movie => {
 			div.appendChild(createCard(movie))
 		})
-		section.appendChild(div)
-    }));
-	document.body.appendChild(section)
+		moviesWrapper.appendChild(div)
+		section.append(title, moviesWrapper)
+		document.querySelector("main").appendChild(section)
+	}));
 }
 
 renderSections(getData(url))
