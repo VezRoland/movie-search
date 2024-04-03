@@ -10,6 +10,8 @@ export async function search(query) {
   showMovies()
 
   function renderPagination(){
+    const buttons = document.createElement('div')
+    buttons.className = 'buttons'
     for(let i=0; i<(result.contents.length/pageSize);i++){
       let button=document.createElement("button")
       button.textContent=i+1
@@ -18,8 +20,9 @@ export async function search(query) {
         if(i==currentPage){
             button.classList.add("bg-indigo-600")
         }
-      document.querySelector("main").appendChild(button)
+      buttons.appendChild(button)
     }
+    document.body.appendChild(buttons)
   }
 
   function handelPagination(e){
@@ -29,6 +32,7 @@ export async function search(query) {
 
   function showMovies(){
     document.querySelector("main").innerHTML=""
+    document.querySelector('.buttons')?.replaceChildren()
     let starIndex=(currentPage-1)*pageSize
     let endIndex=starIndex+pageSize
     let toShow=result.contents.slice(starIndex,endIndex)

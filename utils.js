@@ -35,7 +35,7 @@ export function createCard(data) {
 	card.appendChild(cardContent)
 	return card
 }
-/*
+
 const url="https://movies-api14.p.rapidapi.com/home"
 
 export const renderSections=async(data)=>{
@@ -58,5 +58,4 @@ export const renderSections=async(data)=>{
 	}));
 }
 
-renderSections(getData(url))
-*/
+renderSections(getData(url)) 
