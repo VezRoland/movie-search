@@ -5,23 +5,105 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://cdn.tailwindcss.com"></script>
 	<script defer type="module" src="script.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 	<title>Movie search</title>
+	<style type="text/tailwindcss">
+		@layer components {
+			.card {
+				background-size: cover;
+				background-position: center;
+				@apply relative flex flex-col justify-end aspect-[3/4] p-4 rounded-md hover:shadow-2xl transition-all duration-300;
+			}
+
+			.card::before {
+				content: '';
+				@apply absolute left-0 bottom-0 w-full h-3/4 rounded-b-md bg-gradient-to-t from-violet-600 to-transparent;
+			}
+
+			.card-content {
+				@apply z-10 flex flex-col text-white;
+			}
+
+			.card-title {
+				@apply font-semibold;
+			}
+
+			.card-date {
+				@apply text-zinc-300;
+			}
+
+			.search-content {
+				@apply grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 m-auto;
+			}
+
+			#details {
+				@apply p-4 bg-transparent;
+			}
+
+			#details::backdrop {
+				@apply backdrop-blur-sm bg-zinc-900/75;
+			}
+
+			#details-inside {
+				@apply max-w-2xl rounded-lg text-white bg-zinc-800 overflow-hidden;
+			}
+
+			.details-video {
+				@apply w-full aspect-video;
+			}
+
+			.details-content {
+				@apply flex flex-col gap-4 p-6;
+			}
+
+			.details-content h2 {
+				@apply text-xl font-semibold;
+			}
+
+			.details-genres-wrapper {
+				@apply max-w-full overflow-x-auto;
+			}
+
+			.details-genres {
+				@apply w-max flex gap-2 ml-auto;
+			}
+
+			.details-genres span {
+				@apply text-sm px-4 py-2 rounded-md text-violet-900 bg-violet-400;
+			}
+		}
+
+		main {
+			max-width: 80vw;
+		}
+	</style>
 </head>
-<body>
-	<header>
-		<h1>
+<body class="text-white bg-zinc-900">
+	<dialog id="details">
+		<form class="relative" method="dialog">
+			<button class="material-symbols-outlined absolute right-0 translate-x-1/2 -translate-y-1/2 p-1 text-white rounded-full bg-violet-600">
+				close
+			</button>
+		</form>
+		<div id="details-inside"></div>
+	</dialog>
+
+	<header class="flex flex-col gap-4 p-8">
+		<h1 class="text-center text-2xl">
 			<a href="">Movie search</a>
 		</h1>
 		<nav>
-			<form id="search">
-				<input type="search" name="search" placeholder="Search...">
+			<form class="w-full flex" id="search">
+				<input class="w-full max-w-2xl px-4 py-2 m-auto border border-zinc-700 rounded-md bg-zinc-800" type="search" name="search" placeholder="Search...">
 			</form>
 		</nav>
 	</header>
 
 	<main>
-		<div class="content"></div>
-		<div id="content-end"></div>
+		<section>
+			<h2></h2>
+			<div></div>
+		</section>
 	</main>
 </body>
 </html>
