@@ -10,6 +10,7 @@ export async function search(query) {
   showMovies()
 
   function renderPagination(){
+    document.querySelector('.buttons')?.remove()
     const buttons = document.createElement('div')
     buttons.className = 'buttons'
     for(let i=0; i<(result.contents.length/pageSize);i++){
@@ -32,7 +33,6 @@ export async function search(query) {
 
   function showMovies(){
     document.querySelector("main").innerHTML=""
-    document.querySelector('.buttons')?.replaceChildren()
     let starIndex=(currentPage-1)*pageSize
     let endIndex=starIndex+pageSize
     let toShow=result.contents.slice(starIndex,endIndex)
