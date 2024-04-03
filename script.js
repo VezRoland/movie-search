@@ -14,10 +14,11 @@ document.querySelector('#search').onsubmit = event => {
 	const formData = new FormData(event.target)
 	search(formData.get('search'))
 }
-
+/*
 window.addEventListener('DOMContentLoaded', async () => {
 	const result = await getData('https://movies-api14.p.rapidapi.com/movies')
 	result.movies.forEach(movie => {
 		document.querySelector('main').appendChild(createCard(movie))
 	})
 })
+*/

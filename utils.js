@@ -1,4 +1,4 @@
-import apiKey from './apiKey.js'
+import {apiKey} from './apiKey.js'
 
 export const getData=async(url)=>{
     try {
@@ -28,3 +28,22 @@ export function createCard(data) {
 	card.append(cardTitle, cardDate)
 	return card
 }
+
+const url="https://movies-api14.p.rapidapi.com/home"
+
+export const renderSections=async(data)=>{
+	const section=document.createElement("section")
+    data.then(elements => elements.forEach(element => {
+		const div=document.createElement("div")
+		const title=document.createElement("h1")
+		title.innerHTML=element.title
+		div.appendChild(title)
+		element.movies.forEach(movie => {
+			div.appendChild(createCard(movie))
+		})
+		section.appendChild(div)
+    }));
+	document.body.appendChild(section)
+}
+
+renderSections(getData(url))
