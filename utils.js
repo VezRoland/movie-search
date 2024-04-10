@@ -58,5 +58,32 @@ export const renderSections=async(data)=>{
 	}));
 }
 
+export function getUser() {
+	const username = localStorage.getItem('user')
+	if (!username) return
+
+	return JSON.parse(localStorage.getItem('users'))?.find(u => u.name === username)
+}
+
+localStorage.setItem('users', '[ { "name": "Roland", "password": "asd123", "favorites": [] }, { "name": "asd", "password": "asd123", "favorites": [] } ]')
+
+export function signIn(event) {
+	const formData = new FormData(event.target)
+	const name = formData.get('name')
+	const password = formData.get('password')
+
+	const users = JSON.parse(localStorage.getItem('users'))
+	const user = users?.find(user => user.name === formData.get('name') && user.password === formData.get('password'))
+
+	if (name.trim() === '' || password.trim === '') {
+		return 'Some fields are missing!'
+	}
+
+	localStorage.setItem('user', name)
+
+	if (!user) return 'There is no user with these credentials!'
+}
+
+JSON.stringify({ name: '', password: '', favorites: [] })
 
 renderSections(getData(url)) 
