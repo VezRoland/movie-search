@@ -65,8 +65,6 @@ export function getUser() {
 	return JSON.parse(localStorage.getItem('users'))?.find(u => u.name === username)
 }
 
-localStorage.setItem('users', '[ { "name": "Roland", "password": "asd123", "favorites": [] }, { "name": "asd", "password": "asd123", "favorites": [] } ]')
-
 export function signIn(event) {
 	const formData = new FormData(event.target)
 	const name = formData.get('name')
@@ -85,21 +83,22 @@ export function signIn(event) {
 }
 
 JSON.stringify({ name: '', password: '', favorites: [] })
-function signUp(event){
+
+export function signUp(event){
 	const formData = new FormData(event.target)
 	const name = formData.get("name")
 	const password = formData.get("password")
 
 	let users = JSON.parse(localStorage.getItem("users"))||[]
 	if(name.length>0&&password.length>0){
-		if(localStorage.getItem(name)!=""){
+		if(users.find(user=>user.name==name&&user.password==password)){
+			return "already in use"
+		}else{
 			users.push(({name:name,password:password,favorites:""}))
 			localStorage.setItem("users",JSON.stringify(users))
-		}else{
-			console.log("already in use");
 		}
 	}else{
-		console.log("no input");
+		return "no input"
 	}
 }
 

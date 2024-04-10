@@ -1,4 +1,4 @@
-import { getData, createCard, getUser, signIn } from './utils.js'
+import { getData, createCard, getUser, signIn, signUp } from './utils.js'
 
 console.log(getUser())
 
@@ -101,6 +101,18 @@ export function handleSignIn() {
   modal.showModal()
 }
 
+document.querySelector('#sign-up').onclick = handleSignUp
+
+export function handleSignUp() {
+  const modal = document.querySelector('#auth')
+  
+  document.querySelector('#auth-form').onsubmit = signUp
+
+  document.querySelector('#auth-title').textContent = 'Sign up'
+
+  modal.showModal()
+}
+
 if (getUser()) {
   document.querySelector('#sign-in').classList.add('hidden')
   document.querySelector('#sign-up').classList.add('hidden')
@@ -111,7 +123,3 @@ document.querySelector('#search').onsubmit = event => {
 	const formData = new FormData(event.target)
 	search(formData.get('search'))
 }
-
-document.querySelectorAll("button").forEach(e=>{
-  e.addEventListener("click",Sign)
-})
