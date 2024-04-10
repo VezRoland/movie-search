@@ -16,7 +16,7 @@ export async function search(query) {
     for(let i=0; i<(result.contents.length/pageSize);i++){
       let button=document.createElement("button")
       button.textContent=i+1
-      button.addEventListener("click",handelPagination)
+      button.addEventListener("click",handlePagination)
       button.classList.add("page-btn")
         if(i+1==currentPage){
             button.classList.add("bg-violet-600")
@@ -26,7 +26,7 @@ export async function search(query) {
     document.body.appendChild(buttons)
   }
 
-  function handelPagination(e){
+  function handlePagination(e){
     currentPage=+e.target.textContent
     showMovies()
   }
