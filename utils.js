@@ -82,6 +82,10 @@ export function signIn(event) {
 	if (!user) return 'There is no user with these credentials!'
 }
 
+export function signOut(){
+	localStorage.removeItem("user")
+}
+
 JSON.stringify({ name: '', password: '', favorites: [] })
 
 export function signUp(event){
