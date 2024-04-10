@@ -58,5 +58,22 @@ export const renderSections=async(data)=>{
 	}));
 }
 
+function signUp(event){
+	const formData = new FormData(event.target)
+	const name = formData.get("name")
+	const password = formData.get("password")
+
+	let users = JSON.parse(localStorage.getItem("users"))||[]
+	if(name.length>0&&password.length>0){
+		if(localStorage.getItem(name)!=""){
+			users.push(({name:name,password:password,favorites:""}))
+			localStorage.setItem("users",JSON.stringify(users))
+		}else{
+			console.log("already in use");
+		}
+	}else{
+		console.log("no input");
+	}
+}
 
 renderSections(getData(url)) 

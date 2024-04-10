@@ -1,4 +1,4 @@
-import { getData, createCard } from './utils.js'
+import { getData, createCard, Sign } from './utils.js'
 
 export async function search(query) {
 	const result = await getData(`https://movies-api14.p.rapidapi.com/search?query=${query}`)
@@ -87,3 +87,7 @@ document.querySelector('#search').onsubmit = event => {
 	const formData = new FormData(event.target)
 	search(formData.get('search'))
 }
+
+document.querySelectorAll("button").forEach(e=>{
+  e.addEventListener("click",Sign)
+})
