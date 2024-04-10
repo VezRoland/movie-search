@@ -116,17 +116,17 @@
 
 	<dialog id="auth">
 		<h2 id="auth-title">Sign in</h2>
-		<form>
-			<input type="text" name="name" id="name">
-			<input type="password" name="password" id="password">
+		<form id="auth-form">
+			<input type="text" name="name" placeholder="Username">
+			<input type="password" name="password" placeholder="Password">
 			<button type="submit">Continue</button>
 		</form>
 	</dialog>
 
 	<header class="flex flex-col gap-4 p-8">
 		<nav>
-			<button>Sign in</button>
-			<button>Sign up</button>
+			<button id="sign-in">Sign in</button>
+			<button id="sign-up">Sign up</button>
 		</nav>
 		<h1 class="text-center text-3xl font-bold">
 			<a href="">Movie search</a>

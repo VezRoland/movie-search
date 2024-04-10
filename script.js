@@ -1,4 +1,6 @@
-import { getData, createCard, Sign } from './utils.js'
+import { getData, createCard, getUser, signIn } from './utils.js'
+
+console.log(getUser())
 
 export async function search(query) {
 	const result = await getData(`https://movies-api14.p.rapidapi.com/search?query=${query}`)
@@ -70,6 +72,10 @@ export function renderDetails(data) {
 	const genres = document.createElement('div')
 	genres.className = 'details-genres'
 
+  const favorite = document.createElement('button')
+  favorite.textContent = 'a'
+	favorite.className = 'details-favorite'
+
 	data.genres.forEach(genre => {
 		const elem = document.createElement('span')
 		elem.textContent = genre
@@ -77,9 +83,27 @@ export function renderDetails(data) {
 	})
 
 	genresWrapper.appendChild(genres)
+  if (getUser()) content.appendChild(favorite)
 	content.append(title, overview, genresWrapper)
 	inside.append(media, content)
 	modal.showModal()
+}
+
+document.querySelector('#sign-in').onclick = handleSignIn
+
+export function handleSignIn() {
+  const modal = document.querySelector('#auth')
+  
+  document.querySelector('#auth-form').onsubmit = signIn
+
+  document.querySelector('#auth-title').textContent = 'Sign in'
+
+  modal.showModal()
+}
+
+if (getUser()) {
+  document.querySelector('#sign-in').classList.add('hidden')
+  document.querySelector('#sign-up').classList.add('hidden')
 }
 
 document.querySelector('#search').onsubmit = event => {
