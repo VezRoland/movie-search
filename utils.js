@@ -99,12 +99,37 @@ export function signUp(event){
 		if(users.find(user=>user.name==name&&user.password==password)){
 			return "This username is already used!"
 		}else{
-			users.push(({name:name,password:password,favorites:""}))
+			users.push(({name:name,password:password,favorites:[]}))
 			localStorage.setItem("users",JSON.stringify(users))
 		}
 	}else{
 		return "Empty field!"
 	}
+}
+
+export function addFavorite(id) {
+	const user = getUser()
+	if (!user) return
+
+	user.favorites = user.favorites || []
+	user.favorites.push(id)
+
+	const users = JSON.parse(localStorage.getItem('users'))?.filter(u => u.name !== user.name)
+	users.push(user)
+
+	localStorage.setItem('users', JSON.stringify(users))
+}
+
+export function removeFavorite(id) {
+	const user = getUser()
+	if (!user) return
+
+	user.favorites = (user.favorites || []).filter(favorite => favorite !== id)
+
+	const users = JSON.parse(localStorage.getItem('users'))?.filter(u => u.name !== user.name)
+	users.push(user)
+
+	localStorage.setItem('users', JSON.stringify(users))
 }
 
 renderSections(getData(url)) 

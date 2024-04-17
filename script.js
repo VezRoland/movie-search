@@ -1,4 +1,4 @@
-import { getData, createCard, getUser, signIn, signUp, signOut } from './utils.js'
+import { getData, createCard, getUser, addFavorite, signIn, signUp, signOut } from './utils.js'
 
 console.log(getUser())
 
@@ -75,6 +75,7 @@ export function renderDetails(data) {
   const favorite = document.createElement('button')
   favorite.textContent = 'a'
 	favorite.className = 'details-favorite'
+  favorite.onclick = () => addFavorite(data._id)
 
 	data.genres.forEach(genre => {
 		const elem = document.createElement('span')
