@@ -1,4 +1,4 @@
-import { getData, createCard, getUser, signIn, signUp } from './utils.js'
+import { getData, createCard, getUser, signIn, signUp, signOut } from './utils.js'
 
 console.log(getUser())
 
@@ -113,9 +113,13 @@ export function handleSignUp() {
   modal.showModal()
 }
 
+document.querySelector('#sign-out').onclick = signOut
+
 if (getUser()) {
   document.querySelector('#sign-in').classList.add('hidden')
   document.querySelector('#sign-up').classList.add('hidden')
+}else{
+  document.querySelector('#sign-out').classList.add('hidden')
 }
 
 document.querySelector('#search').onsubmit = event => {

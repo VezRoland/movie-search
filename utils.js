@@ -84,6 +84,7 @@ export function signIn(event) {
 
 export function signOut(){
 	localStorage.removeItem("user")
+	window.location.reload()
 }
 
 JSON.stringify({ name: '', password: '', favorites: [] })
@@ -96,13 +97,13 @@ export function signUp(event){
 	let users = JSON.parse(localStorage.getItem("users"))||[]
 	if(name.length>0&&password.length>0){
 		if(users.find(user=>user.name==name&&user.password==password)){
-			return "already in use"
+			return "This username is already used!"
 		}else{
 			users.push(({name:name,password:password,favorites:""}))
 			localStorage.setItem("users",JSON.stringify(users))
 		}
 	}else{
-		return "no input"
+		return "Empty field!"
 	}
 }
 
