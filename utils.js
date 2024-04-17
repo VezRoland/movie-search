@@ -87,8 +87,6 @@ export function signOut(){
 	window.location.reload()
 }
 
-JSON.stringify({ name: '', password: '', favorites: [] })
-
 export function signUp(event){
 	const formData = new FormData(event.target)
 	const name = formData.get("name")
@@ -104,6 +102,14 @@ export function signUp(event){
 		}
 	}else{
 		return "Empty field!"
+	}
+}
+
+export function isFavorite(id){;
+	if((getUser()?.favorites||[]).includes(id)){
+		return true
+	}else{
+		return false
 	}
 }
 
