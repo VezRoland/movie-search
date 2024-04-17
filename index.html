@@ -97,6 +97,42 @@
 			.page-btn{
 				@apply rounded-lg w-10 h-10 m-1;
 			}
+			#sign-out{
+				@apply border-solid border-2 border-red-700 text-red-700 rounded-md p-2 text-center;
+			}
+			#sign-out:hover{
+				@apply bg-red-700 text-white;
+			}
+			#sign-up{
+				@apply border-solid border-2 m-2 rounded-md p-2 border-violet-600 text-violet-600 text-center;
+			}
+			#sign-in{
+				@apply text-gray-400
+			}
+			#sign-in:hover{
+				@apply text-white
+			}
+			#auth{
+				@apply rounded-lg m-auto p-1 bg-zinc-800;
+			}
+			#auth::backdrop {
+				@apply backdrop-blur-sm bg-zinc-900/75;
+			}
+			#auth-form{
+				@apply p-2 text-center;
+			}
+			#sign{
+				@apply flex justify-end;
+			}
+			#sub{
+				@apply text-violet-600 border-violet-600 border-solid border-2 rounded-md m-1 p-1;
+			}
+			#sub:hover,#sign-up:hover{
+				@apply bg-violet-600 text-white;
+			}
+			 #auth-title{
+				@apply text-center text-white text-xl m-3;
+			 }
 		}
 
 		main {
@@ -116,15 +152,18 @@
 
 	<dialog id="auth">
 		<h2 id="auth-title">Sign in</h2>
-		<form id="auth-form">
-			<input type="text" name="name" placeholder="Username">
-			<input type="password" name="password" placeholder="Password">
-			<button type="submit">Continue</button>
+		<button id="closeModal" class="material-symbols-outlined absolute right-2 top-2 p-1 text-white rounded-full bg-violet-600">
+			close
+		</button>
+		<form id="auth-form" class="flex flex-col m-3">
+			<input type="text" name="name" placeholder="Username" class="p-1 rounded-md bg-zinc-700 text-white m-1">
+			<input type="password" name="password" placeholder="Password" class="p-1 rounded-md bg-zinc-700 text-white m-1">
+			<button type="submit" id="sub" class="">Continue</button>
 		</form>
 	</dialog>
 
 	<header class="flex flex-col gap-4 p-8">
-		<nav>
+		<nav id="sign">
 			<button id="sign-in">Sign in</button>
 			<button id="sign-up">Sign up</button>
 			<button id="sign-out">Sign out</button>
