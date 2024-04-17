@@ -99,6 +99,7 @@ export function signUp(event){
 		}else{
 			users.push(({name:name,password:password,favorites:[]}))
 			localStorage.setItem("users",JSON.stringify(users))
+			localStorage.setItem('user', name)
 		}
 	}else{
 		return "Some fields are missing!"
