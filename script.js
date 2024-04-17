@@ -1,6 +1,4 @@
-import { getData, createCard, getUser, addFavorite, signIn, signUp, signOut } from './utils.js'
-
-console.log(getUser())
+import { getData, createCard, getUser, addFavorite, signIn, signUp, signOut, isFavorite, removeFavorite } from './utils.js'
 
 export async function search(query) {
 	const result = await getData(`https://movies-api14.p.rapidapi.com/search?query=${query}`)
@@ -60,8 +58,25 @@ export function renderDetails(data) {
 	const content = document.createElement('div')
 	content.className = 'details-content'
 
+  const header = document.createElement('div')
+  header.className = 'details-header'
+
 	const title = document.createElement('h2')
 	title.textContent = data.title
+
+  const favorite = document.createElement('button')
+  favorite.textContent = isFavorite(data._id) ? 'favorite' : 'favorite_border'
+	favorite.className = 'details-favorite material-icons'
+  favorite.onclick = () => {
+    if (isFavorite(data._id)) {
+      removeFavorite(data._id)
+      favorite.textContent = 'favorite_border'
+    } else {
+      addFavorite(data._id)
+      favorite.textContent = 'favorite'
+    }
+    document.querySelector('#favorites').textContent = (getUser()?.favorites || []).length
+  }
 
 	const overview = document.createElement('p')
 	overview.textContent = data.overview
@@ -72,11 +87,6 @@ export function renderDetails(data) {
 	const genres = document.createElement('div')
 	genres.className = 'details-genres'
 
-  const favorite = document.createElement('button')
-  favorite.textContent = 'a'
-	favorite.className = 'details-favorite'
-  favorite.onclick = () => addFavorite(data._id)
-
 	data.genres.forEach(genre => {
 		const elem = document.createElement('span')
 		elem.textContent = genre
@@ -84,8 +94,9 @@ export function renderDetails(data) {
 	})
 
 	genresWrapper.appendChild(genres)
-  if (getUser()) content.appendChild(favorite)
-	content.append(title, overview, genresWrapper)
+  header.appendChild(title)
+  if (getUser()) header.appendChild(favorite)
+	content.append(header, overview, genresWrapper)
 	inside.append(media, content)
 	modal.showModal()
 }
@@ -117,10 +128,13 @@ export function handleSignUp() {
 document.querySelector('#sign-out').onclick = signOut
 
 if (getUser()) {
+  document.querySelector('#username').textContent = getUser()?.name
   document.querySelector('#sign-in').classList.add('hidden')
   document.querySelector('#sign-up').classList.add('hidden')
+  document.querySelector('#favorites').textContent = (getUser()?.favorites || []).length
 }else{
   document.querySelector('#sign-out').classList.add('hidden')
+  document.querySelector('#favorites-wrapper').classList.add('hidden')
 }
 
 document.querySelector('#search').onsubmit = event => {

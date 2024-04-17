@@ -46,7 +46,7 @@ export const renderSections=async(data)=>{
 		moviesWrapper.className = "movies-wrapper"
 		const div=document.createElement("div")
 		div.className="movies"
-		const title=document.createElement("h1")
+		const title=document.createElement("h2")
 		title.className = 'text-xl font-semibold'
 		title.innerHTML=element.title
 		element.movies.forEach(movie => {
