@@ -73,7 +73,7 @@ export function signIn(event) {
 	const users = JSON.parse(localStorage.getItem('users'))
 	const user = users?.find(user => user.name === formData.get('name') && user.password === formData.get('password'))
 
-	if (name.trim() === '' || password.trim === '') {
+	if (name.trim() === '' || password.trim() === '') {
 		return 'Some fields are missing!'
 	}
 
@@ -101,7 +101,7 @@ export function signUp(event){
 			localStorage.setItem("users",JSON.stringify(users))
 		}
 	}else{
-		return "Empty field!"
+		return "Some fields are missing!"
 	}
 }
 

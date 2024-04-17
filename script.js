@@ -105,8 +105,17 @@ document.querySelector('#sign-in').onclick = handleSignIn
 
 export function handleSignIn() {
   const modal = document.querySelector('#auth')
+  document.querySelector("#msg").textContent=""
   
-  document.querySelector('#auth-form').onsubmit = signIn
+  document.querySelector('#auth-form').onsubmit = event =>{
+    event.preventDefault()
+    const result = signIn(event)
+    if(result){
+      document.querySelector("#msg").textContent=result
+    }else{
+      window.location.reload()
+    }
+  }
 
   document.querySelector('#auth-title').textContent = 'Sign in'
 
@@ -118,7 +127,16 @@ document.querySelector('#sign-up').onclick = handleSignUp
 export function handleSignUp() {
   const modal = document.querySelector('#auth')
   
-  document.querySelector('#auth-form').onsubmit = signUp
+  document.querySelector('#auth-form').onsubmit = event =>{
+    document.querySelector("#msg").textContent=""
+    event.preventDefault()
+    const result = signUp(event)
+    if(result){
+      document.querySelector("#msg").textContent=result
+    }else{
+      window.location.reload()
+    }
+  }
 
   document.querySelector('#auth-title').textContent = 'Sign up'
 
