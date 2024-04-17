@@ -1,9 +1,10 @@
+import {apiKey} from './apiKey.js'
 import { renderDetails } from './script.js'
 
 export const getData=async(url)=>{
     try {
         const response = await fetch(url,{headers: {
-            'X-RapidAPI-Key': process.env.API_KEY,
+            'X-RapidAPI-Key': apiKey,
             'X-RapidAPI-Host': 'movies-api14.p.rapidapi.com'
           }});
         return(await response.json())

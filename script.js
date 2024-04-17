@@ -1,5 +1,6 @@
 import { getData, createCard, getUser, addFavorite, signIn, signUp, signOut, isFavorite, removeFavorite } from './utils.js'
 
+
 export async function search(query) {
 	const result = await getData(`https://movies-api14.p.rapidapi.com/search?query=${query}`)
 	document.querySelector('main').innerHTML = ''
