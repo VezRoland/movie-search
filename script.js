@@ -127,6 +127,14 @@ export function handleSignUp() {
 
 document.querySelector('#sign-out').onclick = signOut
 
+document.querySelector('#closeModal').onclick = cloesModal
+
+function cloesModal(){
+  const modal = document.querySelector('#auth')
+  modal.close()
+}
+
+
 if (getUser()) {
   document.querySelector('#username').textContent = getUser()?.name
   document.querySelector('#sign-in').classList.add('hidden')
