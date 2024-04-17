@@ -142,7 +142,7 @@ if (getUser()) {
   document.querySelector('#favorites').textContent = (getUser()?.favorites || []).length
 }else{
   document.querySelector('#sign-out').classList.add('hidden')
-  document.querySelector('#favorites-wrapper').classList.add('hidden')
+  document.querySelector('#user').remove()
 }
 
 document.querySelector('#search').onsubmit = event => {
