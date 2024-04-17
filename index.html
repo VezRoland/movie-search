@@ -111,19 +111,13 @@
 				@apply rounded-lg w-10 h-10 m-1;
 			}
 			#sign-out{
-				@apply border-solid border-2 border-red-700 text-red-700 rounded-md p-2 text-center;
-			}
-			#sign-out:hover{
-				@apply bg-red-700 text-white;
+				@apply border-solid border-2 border-red-700 text-base text-red-700 hover:text-white rounded-md p-2 text-center hover:bg-red-700;
 			}
 			#sign-up{
-				@apply border-solid border-2 m-2 rounded-md p-2 border-violet-600 text-violet-600 text-center;
+				@apply border-solid border-2 border-violet-600 text-base text-violet-700 rounded-md px-4 py-2 text-center;
 			}
 			#sign-in{
-				@apply text-gray-400
-			}
-			#sign-in:hover{
-				@apply text-white
+				@apply border-solid border-2 border-violet-700 text-base text-violet-700 hover:text-white rounded-md p-2 text-center hover:bg-violet-700;
 			}
 			#auth{
 				@apply rounded-lg m-auto p-1 bg-zinc-800;
@@ -134,9 +128,6 @@
 			#auth-form{
 				@apply p-2 text-center;
 			}
-			#sign{
-				@apply flex justify-end;
-			}
 			#sub{
 				@apply text-violet-600 border-violet-600 border-solid border-2 rounded-md m-1 p-1;
 			}
@@ -146,10 +137,6 @@
 			 #auth-title{
 				@apply text-center text-white text-xl m-3;
 			 }
-		}
-
-		.auth-btn {
-			@apply text-base hover:text-violet-500;
 		}
 
 		main {
@@ -173,7 +160,7 @@
 
 	<dialog id="auth">
 		<h2 id="auth-title">Sign in</h2>
-		<button id="closeModal" class="material-symbols-outlined absolute right-2 top-2 p-1 text-white rounded-full bg-violet-600">
+		<button id="closeModal" class="material-icons absolute right-2 top-2 p-1 text-white rounded-full bg-violet-600">
 			close
 		</button>
 		<form id="auth-form" class="flex flex-col m-3">
@@ -184,7 +171,7 @@
 	</dialog>
 
 	<header class="flex flex-col gap-4">
-		<nav id="sign" class="fixed z-20 w-full flex items-center gap-8 px-8 py-4 bg-zinc-800">
+		<nav class="fixed z-20 w-full flex items-center gap-8 px-8 py-4 bg-zinc-800">
 			<h1 class="m-auto text-xl font-bold">
 				<a class="hover:text-violet-500" href="">Movie search</a>
 			</h1>
@@ -199,9 +186,11 @@
 					<span id="favorites"></span>
 				</span>
 			</div>
-			<button class="material-icons auth-btn" id="sign-in">login</button>
-			<button class="auth-btn" id="sign-up">Sign up</button>
-			<button class="material-icons auth-btn" id="sign-out">logout</button>
+			<div class="flex items-center gap-2">
+				<button class="material-icons" id="sign-in">login</button>
+				<button id="sign-up">Sign up</button>
+				<button class="material-icons" id="sign-out">logout</button>
+			</div>
 		</nav>
 	</header>
 
