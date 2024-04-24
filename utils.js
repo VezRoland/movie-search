@@ -67,19 +67,21 @@ export function getUser() {
 
 export function signIn(event) {
 	const formData = new FormData(event.target)
-	const name = formData.get('name')
-	const password = formData.get('password')
+    const name = formData.get('name');
+    const password = formData.get('password');
 
-	const users = JSON.parse(localStorage.getItem('users'))
-	const user = users?.find(user => user.name === formData.get('name') && user.password === formData.get('password'))
+	if (!name || !password) {
+        return 'Some fields are missing!';
+    }
 
-	if (name.trim() === '' || password.trim() === '') {
-		return 'Some fields are missing!'
-	}
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(user => user.name === name && user.password === password);
 
-	localStorage.setItem('user', name)
+    if (!user) {
+        return 'There is no user with these credentials!';
+    }
 
-	if (!user) return 'There is no user with these credentials!'
+    localStorage.setItem('user', name);
 }
 
 export function signOut(){
@@ -92,17 +94,17 @@ export function signUp(event){
 	const name = formData.get("name")
 	const password = formData.get("password")
 
+	if (!name || !password) {
+        return "Some fields are missing!";
+    }
+
 	let users = JSON.parse(localStorage.getItem("users"))||[]
-	if(name.length>0&&password.length>0){
-		if(users.find(user=>user.name==name&&user.password==password)){
-			return "This username is already used!"
-		}else{
-			users.push(({name:name,password:password,favorites:[]}))
-			localStorage.setItem("users",JSON.stringify(users))
-			localStorage.setItem('user', name)
-		}
+	if(users.find(user=>user.name==name&&user.password==password)){
+		return "This username is already used!"
 	}else{
-		return "Some fields are missing!"
+		users.push(({name:name,password:password,favorites:[]}))
+		localStorage.setItem("users",JSON.stringify(users))
+		localStorage.setItem('user', name)
 	}
 }
 
